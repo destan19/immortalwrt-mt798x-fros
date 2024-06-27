@@ -1,4 +1,12 @@
-<img src="https://avatars.githubusercontent.com/u/53193414?s=200&v=4" alt="logo" width="200" height="200" align="right">
+
+# Project ImmortalWrt with FROS  
+## 项目说明  
+基于ImmortalWrt集成FROS插件，修改部分配置用于适配新界面，加入一些库的依赖。    
+
+## 如何编译  
+参考ImmortalWrt固件编译方法，默认配置中已经加入了FROS插件编译。  
+
+----
 
 # Project ImmortalWrt
 
