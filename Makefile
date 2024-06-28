@@ -48,7 +48,7 @@ check: $(tools/stamp-check) $(toolchain/stamp-check) $(package/stamp-check)
 printdb:
 	@true
 
-prepare: $(target/stamp-compile)
+prepare: init_fros_env $(target/stamp-compile)
 
 _clean: FORCE
 	rm -rf $(BUILD_DIR) $(STAGING_DIR) $(BIN_DIR) $(OUTPUT_DIR)/packages/$(ARCH_PACKAGES) $(TOPDIR)/staging_dir/packages
@@ -63,6 +63,9 @@ dirclean: targetclean clean
 	rm -rf $(STAGING_DIR_HOST) $(STAGING_DIR_HOSTPKG) $(BUILD_DIR_BASE)/host
 	rm -rf $(TMP_DIR)
 	$(MAKE) -C $(TOPDIR)/scripts/config clean
+init_fros_env:
+	@rm feeds/packages/net/open-app-filter -fr
+	@rm feeds/luci/applications/luci-app-appfilter -fr
 
 cacheclean:
 ifneq ($(CONFIG_CCACHE),)
