@@ -1,10 +1,49 @@
 
-# Project ImmortalWrt with FROS  
-## 项目说明  
-基于ImmortalWrt集成FROS插件，修改部分配置用于适配新界面，加入一些库的依赖。    
+### 项目简介  
+immortalwrt-mt798x加入fros插件编译，调整部分代码用于适配fros功能  
 
-## 如何编译  
-参考ImmortalWrt固件编译方法，默认配置中已经加入了FROS插件编译。  
+### 当前支持的芯片架构（持续更新中）  
+- mt7981
+### 支持的产品
+只列出部分，只要是7981芯片的都可以编译
+- RAX3000M
+- RAX3000M(emmc)
+- 360T7(M/U)
+- JCG Q30 Pro
+- CT3003
+- H3C NX30 Pro
+- GL-iNet MT3000
+
+
+### 如何编译  
+编译方法和immortalwrt-mt798x项目编译类似，具体细节见下方原始的编译说明。
+1. 更新feeds  
+```
+./scripts/feeds update -a
+./scripts/feeds install -a
+```
+2. 拷贝7981默认配置   
+ cp -f defconfig/mt7981-ax3000.config .config
+
+3. 开启fros插件编译配置  
+以下为命令行方式，当然也可以通过make menuconfig选择   
+```
+echo "CONFIG_PACKAGE_fros=y" >>.config
+echo "CONFIG_PACKAGE_fros_files=y" >>.config
+echo "CONFIG_PACKAGE_luci-app-fros=y" >>.config
+make defconfig
+```
+4. 开始编译固件  
+- 单核编译
+```
+make V=s
+```
+- 多核编译
+首次不要用多核编译，可能会报错，编译成功过一次后可以通过多核编译
+```
+make V=s -j4
+```
+
 
 ----
 
